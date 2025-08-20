@@ -38,7 +38,7 @@ A lightweight, feature-rich Customer Relationship Management (CRM) application b
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/mini-crm.git
+    git clone https://github.com/CodeArchitectSam/MiniCRM.git
     cd mini-crm
     ```
 
@@ -50,20 +50,18 @@ A lightweight, feature-rich Customer Relationship Management (CRM) application b
 3.  **Setup Environment:**
     ```bash
     cp .env.example .env
-    php artisan key:generate # If using Laravel
+    php artisan key:generate
     ```
     Edit the `.env` file with your database credentials.
 
 4.  **Setup Database:**
     ```bash
-    php artisan migrate --seed # If using Laravel
-    # Or run the included SQL schema file for other frameworks.
+    php artisan migrate --seed
     ```
 
 5.  **Serve the Application:**
     ```bash
-    php artisan serve # For Laravel
-    # or configure your preferred web server (Apache/Nginx).
+    php artisan serve
     ```
 ## 🚀 Usage
 
