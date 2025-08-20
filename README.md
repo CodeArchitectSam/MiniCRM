@@ -1,61 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini CRM 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A lightweight, feature-rich Customer Relationship Management (CRM) application built with Laravel 12. This Mini CRM is designed to manage contacts efficiently with powerful features like dynamic custom fields and an intelligent contact merging system, all within a modern, AJAX-driven interface.
 
-## About Laravel
+## ✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Core Contact Management (CRUD)
+*   **Full Contact Lifecycle:** Create, view, update, and delete contact records seamlessly.
+*   **Rich Contact Profiles:** Store standard information including Name, Email, Phone, Gender, Profile Image, and additional documents.
+*   **AJAX-Powered Interface:** All create, edit, and delete operations happen asynchronously for a fast, single-page application (SPA) feel without frustrating page reloads.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Dynamic Custom Fields
+*   **Administrator Control:** Easily extend your contact data model. Administrators can add and manage unlimited custom fields (e.g., `Birthday`, `Company`, `Address`, `Twitter Handle`) directly from the UI.
+*   **Flexible Data Storage:** Custom field data is stored using a scalable and extensible database schema, ensuring easy maintenance and future growth.
+*   **Dynamic UI:** The contact form automatically renders these custom fields, providing a seamless experience for data entry and display.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Advanced Search & Filtering
+*   **Instant Results:** Search and filter your contact list in real-time using AJAX.
+*   **Multi-Criteria Filters:** Find contacts quickly by filtering based on Name, Email, and Gender.
+*   **Extensible Design:** The architecture supports future expansion to include filtering by any custom field.
 
-## Learning Laravel
+### Intelligent Contact Merging
+*   **Prevent Duplicates:** Clean your database by merging duplicate contact records.
+*   **Master Record Selection:** A intuitive popup/modal workflow allows you to choose which contact will serve as the primary "master" record.
+*   **Conflict Resolution:**
+    *   Standard fields from the master record are preserved.
+    *   Unique emails and phone numbers from the secondary contact are added to the master.
+    *   Custom fields are merged intelligently: new fields are added, and conflicts are resolved by preserving the master's data by default (configurable logic).
+*   **Zero Data Loss:** The merge process is non-destructive. The secondary contact is deactivated (not deleted) and all its data is preserved within the master record, maintaining full data integrity and auditability.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Technology Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+*   **Backend Framework:** Laravel 12
+*   **Frontend:** Tailwind CSS
+*   **Database:** MySQL
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📦 Installation
 
-## Laravel Sponsors
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/mini-crm.git
+    cd mini-crm
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2.  **Install PHP Dependencies:**
+    ```bash
+    composer install
+    ```
 
-### Premium Partners
+3.  **Setup Environment:**
+    ```bash
+    cp .env.example .env
+    php artisan key:generate # If using Laravel
+    ```
+    Edit the `.env` file with your database credentials.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4.  **Setup Database:**
+    ```bash
+    php artisan migrate --seed # If using Laravel
+    # Or run the included SQL schema file for other frameworks.
+    ```
 
-## Contributing
+5.  **Serve the Application:**
+    ```bash
+    php artisan serve # For Laravel
+    # or configure your preferred web server (Apache/Nginx).
+    ```
+## 🚀 Usage
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1.  **Managing Custom Fields:** Navigate to the "Custom Fields" section in the sidebar to create new fields (e.g., "Birthdate" of type `date`). These will instantly appear on the Contact creation and edit forms.
+2.  **Adding Contacts:** Click "Add New Contact", fill out the standard and any custom fields, and save. The form will submit via AJAX.
+3.  **Searching:** Use the search bar and filters at the top of the contacts list. Results update as you type.
+4.  **Merging Contacts:**
+    *   Select the contact to be merged.
+    *   Click the "Merge" button.
+    *   In the modal, select the contact you wish to keep as the **Master**.
+    *   Confirm the merge. The master contact will now contain all combined data.
 
-## Code of Conduct
+## 🚀 Screenshots
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![Mini CRM](public/images/welcomescreen.png)
 
-## Security Vulnerabilities
+![Mini CRM](public/images/login.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Mini CRM](public/images/register.png)
 
-## License
+![Mini CRM](public/images/contacts.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Mini CRM](public/images/add%20contact.png)
+
+![Mini CRM](public/images/filter%20contact.png)
+
+![Mini CRM](public/images/contact%20primary.png)
+
+![Mini CRM](public/images/contact%20merged%20details.png)
+
+![Mini CRM](public/images/custom%20fields.png)
+
+![Mini CRM](public/images/add%20custom%20field.png)
+
+![Mini CRM](public/images/edit%20custom%20field.png)
